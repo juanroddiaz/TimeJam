@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IInputListener
 {
-    public void Subscribe();
+    void Subscribe();
 }
