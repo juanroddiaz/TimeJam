@@ -32,6 +32,7 @@ public class PlayerLogic : MonoBehaviour, IInputListener
 
     void Awake()
     {
+        Subscribe();
         _movement = GetComponent<EntityMovement>();
     }
 
