@@ -20,7 +20,7 @@ public class MagicController : MonoBehaviour, IInputListener
         }
     }
 
-    void Awake()
+    void Start()
     {
         Subscribe();
         DontDestroyOnLoad(gameObject);
@@ -40,7 +40,7 @@ public class MagicController : MonoBehaviour, IInputListener
 
     private void OnFastMagic()
     {
-        TimeController.Instance.TriggerSlowMotion();
+        TimeController.Instance.TriggerFastMotion();
         StartCoroutine(OnMagicRoutine());
     }
 

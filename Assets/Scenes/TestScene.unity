@@ -1165,6 +1165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99c81c854be8e243a58c7b7429501ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultMagicDuration: 2
 --- !u!1001 &595360935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1974,6 +1975,7 @@ GameObject:
   - component: {fileID: 1063875999}
   - component: {fileID: 1063876001}
   - component: {fileID: 1063876000}
+  - component: {fileID: 1063876002}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -2009,6 +2011,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slowClockName: Slow
   _fastClockName: Fast
+  _normalClockName: Regular
+  _slowSpeeds: {x: 0.5, y: 1, z: 0.5}
+  _fastSpeeds: {x: 1, y: 2, z: 2}
+  _normalSpeeds: {x: 0.5, y: 2, z: 1}
 --- !u!114 &1063875998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2074,6 +2080,23 @@ MonoBehaviour:
   _parentKey: Root
   _parentBlend: 0
   _key: Slow
+--- !u!114 &1063876002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063875995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0144e3ad8a88947298e2dca62625e6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localTimeScale: 1
+  _paused: 0
+  _parentKey: Root
+  _parentBlend: 0
+  _key: Regular
 --- !u!1001 &1105535580
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recordingInterval: 0.5
   _mode: 1
-  _globalClockKey: Root
+  _globalClockKey: Regular
   _rewindable: 0
   _recordingDuration: 30
 --- !u!1001 &4132376840533881446
