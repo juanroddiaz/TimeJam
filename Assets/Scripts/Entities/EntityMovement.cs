@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Chronos;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +11,12 @@ public class EntityMovement : MonoBehaviour
     private Transform _target = default;
     private Transform _transform = default;
     private bool _autoRotates = false;
+    private Timeline _timeline = default;
 
     private void Awake()
     {
         _transform = GetComponent<Transform>();
+        _timeline = GetComponent<Timeline>();
     }
 
     public void Init(bool autoRotation)
@@ -36,7 +39,7 @@ public class EntityMovement : MonoBehaviour
 
     public void Move(Vector3 movement)
     {
-        _transform.Translate(_transform.position + movement * _moveSpeed);
+        _transform.Translate(_transform.position + movement * _moveSpeed * _timeline.deltaTime);
     }
 
     private void UpdateOrientation()
@@ -54,6 +57,6 @@ public class EntityMovement : MonoBehaviour
         }
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                lookRotation, _rotationSpeed * Time.deltaTime);
+                lookRotation, _rotationSpeed * _timeline.deltaTime);
     }
 }

@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Chronos;
 using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour, IInputListener
 {
     private EntityMovement _movement = default;
+    private Timeline _timeline = default;
 
     public void Subscribe()
     {
@@ -14,6 +14,7 @@ public class PlayerLogic : MonoBehaviour, IInputListener
     void Awake()
     {
         _movement = GetComponent<EntityMovement>();
+        _timeline = GetComponent<Timeline>();
     }
 
     void Start()
