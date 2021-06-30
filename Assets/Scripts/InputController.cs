@@ -8,6 +8,8 @@ public class InputController : MonoBehaviour
     public static InputController Instance { get; private set; }
 
     public Action<Direction> DirPushed;
+    public Action SlowButtonPushed;
+    public Action FastButtonPushed;
 
     private void Awake()
     {
@@ -43,6 +45,16 @@ public class InputController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             DirPushed?.Invoke(Direction.Right);
+        }
+        // Q, Slow magic
+        if (Input.GetKey(KeyCode.Q))
+        {
+            SlowButtonPushed?.Invoke();
+        }
+        // E, Fast magic
+        if (Input.GetKey(KeyCode.E))
+        {
+            FastButtonPushed?.Invoke();
         }
     }
 }
