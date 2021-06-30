@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MagicController : MonoBehaviour, IInputListener
 {
+    [SerializeField] private float _defaultMagicDuration = 2.0f;
+
     private static MagicController _instance;
     public static MagicController Instance
     {
@@ -26,5 +28,23 @@ public class MagicController : MonoBehaviour, IInputListener
     public void Subscribe()
     {
         
+    }
+
+    private void OnSlowMagic()
+    {
+        TimeController.Instance.TriggerSlowMotion();
+        StartCoroutine(OnMagicRoutine());
+    }
+
+    private void OnFastMagic()
+    {
+        TimeController.Instance.TriggerSlowMotion();
+        StartCoroutine(OnMagicRoutine());
+    }
+
+    private IEnumerator OnMagicRoutine()
+    {
+        yield return new WaitForSeconds(_defaultMagicDuration);
+        TimeController.Instance.TriggerNormalMotion();
     }
 }
