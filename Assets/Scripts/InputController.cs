@@ -5,10 +5,20 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static InputController Instance { get; private set; }
+
+    public Action<Direction> DirPushed;
+
+    private void Awake()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     // Update is called once per frame
@@ -17,22 +27,22 @@ public class InputController : MonoBehaviour
         // up
         if(Input.GetKey(KeyCode.UpArrow))
         {
-            Debug.Log("up");
+            DirPushed?.Invoke(Direction.Up);
         }
         // down
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Debug.Log("down");
+            DirPushed?.Invoke(Direction.Down);
         }
         // left
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Debug.Log("left");
+            DirPushed?.Invoke(Direction.Left);
         }
         // right
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Debug.Log("right");
+            DirPushed?.Invoke(Direction.Right);
         }
     }
 }
