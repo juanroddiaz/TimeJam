@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static TimeController _instance;
+    public static TimeController Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<TimeController>();
+            }
+
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 }
