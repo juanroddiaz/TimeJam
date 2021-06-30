@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private EntityMovement _movement = default;
+
+    void Awake()
     {
-        
+        _movement = GetComponent<EntityMovement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        _movement.Init(true);
+        _movement.SetTarget(ScenarioController.Instance.Player.transform);
     }
 }

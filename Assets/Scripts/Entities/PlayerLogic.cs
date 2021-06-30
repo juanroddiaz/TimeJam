@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour, IInputListener
 {
-    [SerializeField] private EntityMovement _movement = default;
+    private EntityMovement _movement = default;
 
     public void Subscribe()
     {
@@ -13,7 +13,7 @@ public class PlayerLogic : MonoBehaviour, IInputListener
 
     private void OnDirPushed(Direction dir)
     {
-        switch(dir)
+        switch (dir)
         {
             case Direction.Up:
                 _movement.Move(Vector3.forward);
@@ -30,4 +30,13 @@ public class PlayerLogic : MonoBehaviour, IInputListener
         }
     }
 
+    void Awake()
+    {
+        _movement = GetComponent<EntityMovement>();
+    }
+
+    void Start()
+    {
+        _movement.Init(false);
+    }
 }

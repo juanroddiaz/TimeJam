@@ -2,16 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicController : MonoBehaviour
+public class MagicController : MonoBehaviour, IInputListener
 {
-    // Start is called before the first frame update
-    void Start()
+    private static MagicController _instance;
+    public static MagicController Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<MagicController>();
+            }
+
+            return _instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void Subscribe()
     {
         
     }
