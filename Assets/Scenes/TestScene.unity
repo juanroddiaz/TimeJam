@@ -2007,6 +2007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080e97977b7a33b45ac32f0866fbdc73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slowClockName: Slow
+  _fastClockName: Fast
 --- !u!114 &1063875998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,7 +2052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0144e3ad8a88947298e2dca62625e6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localTimeScale: 1.5
+  _localTimeScale: 1
   _paused: 0
   _parentKey: Root
   _parentBlend: 0
@@ -2067,7 +2069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0144e3ad8a88947298e2dca62625e6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localTimeScale: 0.5
+  _localTimeScale: 1
   _paused: 0
   _parentKey: Root
   _parentBlend: 0
