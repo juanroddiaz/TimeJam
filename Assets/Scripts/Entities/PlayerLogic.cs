@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour, IInputListener
 {
+    [SerializeField] private EntityMovement _movement = default;
+
     public void Subscribe()
     {
 
-    }    
+    }
+
+
 }
