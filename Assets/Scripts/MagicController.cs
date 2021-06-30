@@ -22,12 +22,14 @@ public class MagicController : MonoBehaviour, IInputListener
 
     void Awake()
     {
+        Subscribe();
         DontDestroyOnLoad(gameObject);
     }
 
     public void Subscribe()
     {
-        
+        InputController.Instance.SlowButtonPushed += OnSlowMagic;
+        InputController.Instance.FastButtonPushed += OnFastMagic;
     }
 
     private void OnSlowMagic()
