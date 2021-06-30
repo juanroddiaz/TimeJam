@@ -39,7 +39,7 @@ public class EntityMovement : MonoBehaviour
 
     public void Move(Vector3 movement)
     {
-        _transform.Translate(_transform.position + movement * _moveSpeed * _timeline.deltaTime);
+        _transform.Translate(movement * _moveSpeed * _timeline.deltaTime);
     }
 
     private void UpdateOrientation()
