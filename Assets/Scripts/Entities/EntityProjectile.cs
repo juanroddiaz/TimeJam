@@ -26,9 +26,9 @@ public class EntityProjectile : MonoBehaviour
         {
             // shoot projectile
             GameObject projectile = Instantiate(projectilePrefab);
-            projectile.transform.SetParent(transform, false);
+            projectile.transform.position = gameObject.transform.position;
             ProjectileLogic projectileLogic = projectile.GetComponent<ProjectileLogic>();
-            projectileLogic.Init(gameObject.transform.forward.normalized * -1, _timeline.globalClockKey);
+            projectileLogic.Init(gameObject.transform.forward.normalized, _timeline.globalClockKey);
             // then reload
             _projectileReady = false;
         }
