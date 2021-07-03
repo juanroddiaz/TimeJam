@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyLogic : MonoBehaviour
 {
     private EntityMovement _movement = default;
+    private EntityProjectile _projectile = default;
 
     void Awake()
     {
