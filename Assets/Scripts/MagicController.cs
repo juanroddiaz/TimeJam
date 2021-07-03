@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public struct MagicData
 {
     public int Limit;
@@ -25,8 +27,8 @@ public class MagicController : MonoBehaviour, IInputListener
     private MagicData _currentSlowMagicData = default;
     private MagicData _currentFastMagicData = default;
 
-    private MagicData CurrentSlowMagic => _currentSlowMagicData;
-    private MagicData CurrentFastMagic => _currentFastMagicData;
+    public MagicData CurrentSlowMagic => _currentSlowMagicData;
+    public MagicData CurrentFastMagic => _currentFastMagicData;
 
     private static MagicController _instance;
     public static MagicController Instance
@@ -66,10 +68,35 @@ public class MagicController : MonoBehaviour, IInputListener
             }
             case MagicStatus.Slow:
             {
+                var delta = Time.deltaTime * _defaultMagicSpeed;
+                _currentSlowMagicData.Current -= delta;
+                _currentSlowMagicData.Current = Mathf.Max(0.0f, _currentSlowMagicData.Current);
+                Debug.Log("slow: " + _currentSlowMagicData.Current);
+                if (_currentSlowMagicData.Current <= 0.0f)
+                {
+                    OnSlowMagic(false);
+                    return;
+                }
+                _currentFastMagicData.Current += delta;
+                _currentFastMagicData.Current = 
+                    Mathf.Min(_currentFastMagicData.Limit, _currentFastMagicData.Current);
                 break;
             }
             case MagicStatus.Fast:
             {
+                var delta = Time.deltaTime * _defaultMagicSpeed;
+                _currentFastMagicData.Current -= delta;
+                _currentFastMagicData.Current = Mathf.Max(0.0f, _currentFastMagicData.Current);
+                Debug.Log("fast: " + _currentFastMagicData.Current);
+                if (_currentFastMagicData.Current <= 0.0f)
+                {
+                    OnFastMagic(false);
+                    return;
+                }
+                _currentSlowMagicData.Current += delta;
+                _currentSlowMagicData.Current = 
+                        Mathf.Min(_currentSlowMagicData.Limit, _currentSlowMagicData.Current);
+
                 break;
             }
         }            
