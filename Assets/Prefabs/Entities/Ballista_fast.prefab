@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2044046750598968311}
   - component: {fileID: 2044046750598968310}
   - component: {fileID: 187125509}
-  - component: {fileID: 2756583756544330541}
   - component: {fileID: 1162420484}
+  - component: {fileID: 2756583756544330541}
   m_Layer: 0
   m_Name: Ballista_fast
   m_TagString: Untagged
@@ -62,6 +62,21 @@ MonoBehaviour:
   _moveSpeed: 1
   _rotationSpeed: 30
   _body: {fileID: 0}
+--- !u!114 &1162420484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044046750598968308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253c7f312da123a4eba762f3d3c4e5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTime: 3
+  projectilePrefab: {fileID: 7726551453208483481, guid: 83f5d7fd38d4a0b469bdacb0455bb5a7,
+    type: 3}
 --- !u!114 &2756583756544330541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,21 +94,6 @@ MonoBehaviour:
   _globalClockKey: Fast
   _rewindable: 0
   _recordingDuration: 30
---- !u!114 &1162420484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044046750598968308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 253c7f312da123a4eba762f3d3c4e5ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reloadTime: 3
-  projectilePrefab: {fileID: 7726551453208483481, guid: 83f5d7fd38d4a0b469bdacb0455bb5a7,
-    type: 3}
 --- !u!1001 &2044046750177149235
 PrefabInstance:
   m_ObjectHideFlags: 0

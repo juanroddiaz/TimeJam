@@ -7,8 +7,10 @@ public class EntityProjectile : MonoBehaviour
 {
     private bool _projectileReady;
     private Timeline _timeline;
-    public float reloadTime = 1f;
     public GameObject projectilePrefab;
+    [SerializeField]
+    private float _reloadTime = 1f;
+    private float _fireCooldown = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,20 +26,20 @@ public class EntityProjectile : MonoBehaviour
         {
             // shoot projectile
             GameObject projectile = Instantiate(projectilePrefab);
+            projectile.transform.SetParent(transform, false);
             ProjectileLogic projectileLogic = projectile.GetComponent<ProjectileLogic>();
-            projectileLogic.Init(gameObject.transform.forward.normalized, _timeline.globalClockKey);
+            projectileLogic.Init(gameObject.transform.forward.normalized * -1, _timeline.globalClockKey);
             // then reload
             _projectileReady = false;
-            StartCoroutine("Reload");
         }
-    }
-
-    IEnumerator Reload()
-    {
-        Debug.Log("reloading");
-        Debug.Log(reloadTime / _timeline.timeScale);
-        yield return new WaitForSeconds(reloadTime / _timeline.timeScale);
-        Debug.Log("reloaded");
-        _projectileReady = true;
+        if (_fireCooldown < _reloadTime)
+        {
+            _fireCooldown += _timeline.deltaTime;
+            if (_fireCooldown >= _reloadTime)
+            {
+                _projectileReady = true;
+                _fireCooldown = 0.0f;
+            }
+        }
     }
 }
