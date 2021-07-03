@@ -7,11 +7,14 @@ public class EntityMovement : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1.0f;
     [SerializeField] private float _rotationSpeed = 1.0f;
+    [SerializeField] private Rigidbody _body = default;
 
     private Transform _target = default;
     private Transform _transform = default;
     private bool _autoRotates = false;
+    private bool _useRigidbody = false;
     private Timeline _timeline = default;
+    private Vector3 _moveTo = Vector3.zero;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class EntityMovement : MonoBehaviour
     public void Init(bool autoRotation)
     {
         _autoRotates = autoRotation;
+        _useRigidbody = _body != null;
     }
 
     public void SetTarget(Transform t)
@@ -35,11 +39,34 @@ public class EntityMovement : MonoBehaviour
         {
             UpdateOrientation();
         }
+        
+        if(_useRigidbody)
+        { 
+            return; 
+        }
+
+        if(_moveTo == Vector3.zero)
+        {
+            return;
+        }
+
+        _transform.Translate(_moveTo * _moveSpeed * _timeline.deltaTime);
+        _moveTo = Vector3.zero;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_useRigidbody)
+        {
+            var pos = _body.position + _moveTo * _moveSpeed * _timeline.fixedDeltaTime;
+            _body.MovePosition(pos);
+            _moveTo = Vector3.zero;
+        }
     }
 
     public void Move(Vector3 movement)
     {
-        _transform.Translate(movement * _moveSpeed * _timeline.deltaTime);
+        _moveTo = movement;
     }
 
     private void UpdateOrientation()
