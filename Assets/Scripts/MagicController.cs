@@ -28,25 +28,30 @@ public class MagicController : MonoBehaviour, IInputListener
 
     public void Subscribe()
     {
-        InputController.Instance.SlowButtonPushed += OnSlowMagic;
-        InputController.Instance.FastButtonPushed += OnFastMagic;
+        InputController.Instance.SlowButtonDown += OnSlowMagic;
+        InputController.Instance.FastButtonDown += OnFastMagic;
     }
 
-    private void OnSlowMagic()
+    private void OnSlowMagic(bool buttonIsDown)
     {
-        TimeController.Instance.TriggerSlowMotion();
-        StartCoroutine(OnMagicRoutine());
+        if (buttonIsDown)
+        {
+            TimeController.Instance.TriggerSlowMotion();
+        } else
+        {
+            TimeController.Instance.TriggerNormalMotion();
+        }
     }
 
-    private void OnFastMagic()
+    private void OnFastMagic(bool buttonIsDown)
     {
-        TimeController.Instance.TriggerFastMotion();
-        StartCoroutine(OnMagicRoutine());
-    }
-
-    private IEnumerator OnMagicRoutine()
-    {
-        yield return new WaitForSeconds(_defaultMagicDuration);
-        TimeController.Instance.TriggerNormalMotion();
+        if (buttonIsDown)
+        {
+            TimeController.Instance.TriggerFastMotion();
+        }
+        else
+        {
+            TimeController.Instance.TriggerNormalMotion();
+        }
     }
 }
