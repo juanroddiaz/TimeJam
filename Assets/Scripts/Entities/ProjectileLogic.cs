@@ -16,7 +16,7 @@ public class ProjectileLogic : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _movement = GetComponent<EntityMovement>();
         _timeline = GetComponent<Timeline>();

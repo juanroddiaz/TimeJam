@@ -28,13 +28,16 @@ public class EntityProjectile : MonoBehaviour
             projectileLogic.Init(gameObject.transform.forward.normalized, _timeline.globalClockKey);
             // then reload
             _projectileReady = false;
-            StartCoroutine(Reload());
+            StartCoroutine("Reload");
         }
     }
 
     IEnumerator Reload()
     {
+        Debug.Log("reloading");
+        Debug.Log(reloadTime / _timeline.timeScale);
         yield return new WaitForSeconds(reloadTime / _timeline.timeScale);
+        Debug.Log("reloaded");
         _projectileReady = true;
     }
 }
