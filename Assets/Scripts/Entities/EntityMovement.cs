@@ -50,7 +50,7 @@ public class EntityMovement : MonoBehaviour
             return;
         }
 
-        _transform.Translate(_moveTo * _moveSpeed * _timeline.deltaTime);
+        _transform.Translate(_moveTo.normalized * _moveSpeed * _timeline.deltaTime);
         _moveTo = Vector3.zero;
     }
 
@@ -58,7 +58,7 @@ public class EntityMovement : MonoBehaviour
     {
         if (_useRigidbody)
         {
-            var pos = _body.position + _moveTo * _moveSpeed * _timeline.fixedDeltaTime;
+            var pos = _body.position + _moveTo.normalized * _moveSpeed * _timeline.fixedDeltaTime;
             _body.MovePosition(pos);
             _moveTo = Vector3.zero;
         }
@@ -66,7 +66,7 @@ public class EntityMovement : MonoBehaviour
 
     public void Move(Vector3 movement)
     {
-        _moveTo = movement;
+        _moveTo += movement;
     }
 
     private void UpdateOrientation()
