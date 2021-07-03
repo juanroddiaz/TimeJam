@@ -10,7 +10,7 @@ public class TimeController : MonoBehaviour
     [SerializeField]
     private string _fastClockName = "Fast";
     [SerializeField]
-    private string _normalClockName = "Normal";
+    private string _normalClockName = "Regular";
     [Header("slow, fast, normal")]
     [SerializeField]
     private Vector3 _slowSpeeds = Vector3.one;
