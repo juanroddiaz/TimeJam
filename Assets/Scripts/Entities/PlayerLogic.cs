@@ -63,7 +63,7 @@ public class PlayerLogic : MonoBehaviour, IInputListener
 
     void OnColliderHit(Transform t)
     {
-        Debug.Log("Player Hit by " + t.name);
+        //Debug.Log("Player Hit by " + t.name);
         if (t.CompareTag("Projectile"))
         {
             _healthLogic.OnHit();
