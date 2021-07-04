@@ -6,6 +6,7 @@ public class PlayerLogic : MonoBehaviour, IInputListener
 {
     private EntityMovement _movement = default;
     private CollisionEventLogic _collisionLogic = default;
+    private HealhLogic _healthLogic = default;
 
     public void Subscribe()
     {
@@ -36,11 +37,13 @@ public class PlayerLogic : MonoBehaviour, IInputListener
         Subscribe();
         _movement = GetComponent<EntityMovement>();
         _collisionLogic = GetComponent<CollisionEventLogic>();
+        _healthLogic = GetComponent<HealhLogic>();
     }
 
     void Start()
     {
         _movement.Init(false);
+        _healthLogic.Init(OnHit, OnDeath, ScenarioController.Instance.UI.PlayerHealthBar);
         _collisionLogic.Initialize(new CollisionEventData
         {
             CollisionEnterAction = OnColliderHit,
@@ -48,8 +51,22 @@ public class PlayerLogic : MonoBehaviour, IInputListener
         });
     }
 
+    void OnHit()
+    {
+
+    }
+
+    void OnDeath()
+    {
+
+    }
+
     void OnColliderHit(Transform t)
     {
         Debug.Log("Player Hit by " + t.name);
+        if (t.CompareTag("Projectile"))
+        {
+            _healthLogic.OnHit();
+        }
     }
 }
