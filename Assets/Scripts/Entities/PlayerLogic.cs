@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerLogic : MonoBehaviour, IInputListener
 {
     private EntityMovement _movement = default;
+    private CollisionEventLogic _collisionLogic = default;
 
     public void Subscribe()
     {
@@ -34,10 +35,21 @@ public class PlayerLogic : MonoBehaviour, IInputListener
     {
         Subscribe();
         _movement = GetComponent<EntityMovement>();
+        _collisionLogic = GetComponent<CollisionEventLogic>();
     }
 
     void Start()
     {
         _movement.Init(false);
+        _collisionLogic.Initialize(new CollisionEventData
+        {
+            CollisionEnterAction = OnColliderHit,
+            CollisionExitAction = null
+        });
+    }
+
+    void OnColliderHit(Transform t)
+    {
+        Debug.Log("Player Hit by " + t.name);
     }
 }

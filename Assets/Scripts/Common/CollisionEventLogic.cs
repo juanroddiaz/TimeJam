@@ -13,16 +13,14 @@ public class CollisionEventLogic : MonoBehaviour
 {
     private CollisionEventData _data;
     private bool _initialized = false;
-    private Collider2D _collider;
 
     public void Initialize(CollisionEventData data)
     {
         _data = data;
-        _collider = GetComponent<Collider2D>();
         _initialized = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("On collision enter: other " + collision.gameObject.name + ", collider: " + gameObject.name);
         if (_initialized)
@@ -31,7 +29,7 @@ public class CollisionEventLogic : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit(Collision collision)
     {
         //Debug.Log("On collision exit: other " + collision.gameObject.name + ", collider: " + gameObject.name);
         if (_initialized)
